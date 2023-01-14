@@ -1,59 +1,77 @@
-import { Input, Row } from 'antd';
+import { useEffect, useState } from "react";
+import axios from "axios"
 
-import { useState } from 'react';
-import { ArrowLeftOutlined } from '@ant-design/icons'
-import Helper from './Helper';
-import Header from '../../components/Header/Header';
 
-const { Search } = Input;
+import { Button, Row, Col, Popover, Form, Image } from "antd"
+import { CaretRightOutlined } from '@ant-design/icons'
 
-const InitialPage = () => {
-  const [prompt, setPrompt] = useState(null);
-  const [isStart, setStart] = useState(null);
+import { questionPrompt, solutionPrompt } from "./promptHelper";
+import { qna as dummyQna, images as dummyImages } from './dummyData';
 
-  const generate = (prompt) => {
-    setPrompt(prompt);
-    setStart(true);
-  }
+import './index.scss'
 
-  const changeStartState = () => {
-    if (isStart) setPrompt(null);
-    setStart(!isStart);
-  }
+import Header from "../../components/Header/Header";
+import Qna from "../../components/Qna";
+import GeneratedResult from "../../components/GeneratedResult";
+import GeneratedHistory from "../../components/GeneratedHistory";
+import { useParams } from "react-router-dom";
 
-  const navigation = () => (
-    <>
-      <div style={{padding:'80px 0 0 20px', width:'400px', backgroundColor:'#F8F8F8'}}>
-        <ArrowLeftOutlined onClick={changeStartState} style={{ fontSize: '20px'}} />
-      </div>
-    </>
-  )
+const Home = (props) => {
+  const [currentHistories, setCurrentHistories] = useState([]);
+  const [currentResults, setCurrentResults] = useState([]);
+  const { prompt } = useParams();
 
-  const initialComponent = () => (
-    <>
-      <div className='initial-container'>
-        <Row>
-          <Search placeholder="generate what you want" allowClear onSearch={generate} size="large" />
-        </Row>
+  const addHistory = ({ question, answer, images }) => {
+    // TODO: 승호야 힘내...
+    const new_history = [
+      ...currentHistories,
+      {
+        question: currentResults.q,
+        answer: currentResults.p1_answer,
+        prompt: currentResults.p1,
+        images: currentResults.p1_images,
+        others: [
+          {
+            answer: currentResults.p2_answer,
+            images: currentResults.p1_images,
+            prompt: currentResults.p2
+          },
+          {
+            answer: currentResults.p3_answer,
+            images: currentResults.p1_images,
+            prompt: currentResults.p3
+          }
+        ]
+      }
+    ]
 
-        <Row>
-          <p className='button-desc'>If you don't have anything in mind</p>
-          <div className='button' onClick={changeStartState} type="primary">Start without initial prompt</div>
-        </Row>
-      </div>
-    </>
-  )
+    setCurrentHistories(new_history);
+  };
 
   return (
     <>
       <Header/>
-      <div>
-        {isStart ? navigation() : initialComponent()}
-      </div>
 
-      {(isStart) && <Helper prompt={prompt} />}
+      <div className="home-container">
+        <GeneratedHistory
+          initialPrompt={prompt}
+          currentResults={currentResults}
+          currentHistories={currentHistories}
+          setCurrentHistories={setCurrentHistories}
+          setCurrentResults={setCurrentResults}
+        />
+        <Qna
+          initialPrompt={prompt}
+          currentHistories={currentHistories}
+          setCurrentResults={setCurrentResults}
+        />
+        <GeneratedResult
+          currentResults={currentResults}
+          addHistory={addHistory}
+        />
+      </div>
     </>
   )
 }
 
-export default InitialPage
+export default Home

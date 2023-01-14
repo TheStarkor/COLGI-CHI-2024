@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import './Header.scss'
 
 const Header = () => {
+	const navigate = useNavigate();
+
 	return (
 		<>
-			<div className='header-container'>
+			<div onClick={() => navigate('/')} className='header-container'>
 				<p className='logo'>COLGI</p>
 			</div>
 		</>
