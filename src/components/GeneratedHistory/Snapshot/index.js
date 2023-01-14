@@ -9,15 +9,18 @@ const Snapshot = (props) => {
   const [tempHistories, setTempHistories] = useState([]);
 
   const revert = () => {
-    // TODO: 지승아 힘내...
+    // TODO: result temp 저장 후 업데이트
+    // TODO: history temp 저장 후 업데이트
+    // TODO: selectedIdx 업데이트
   }
 
   const cancelRevert = () => {
-    // TODO: 지승아 힘내...
+    // TODO: temp로 바꾸기 둘 다 + idx = 100 바꾸기
   }
 
   const confirmRevert = () => {
-    // TODO: 지승아 힘내...
+    // TODO: 경고창 띄워주기
+    // TODO: temp 다 비우기 / idx 초기화
   }
 
   return (
