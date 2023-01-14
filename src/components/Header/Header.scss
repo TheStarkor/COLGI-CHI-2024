@@ -1,0 +1,16 @@
+.header-container{
+    width: 2000px;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding:0 20px;
+
+    position:absolute;
+    top: 0;
+    .logo{
+        font-weight: 900;
+        margin:0
+    }
+}
