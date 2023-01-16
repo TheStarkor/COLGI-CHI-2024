@@ -3,6 +3,7 @@ import { Input, Row } from 'antd';
 import { useState } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import Header from '../../components/Header/Header';
+import './index.scss'
 import { useNavigate } from 'react-router-dom';
 
 const { Search } = Input;

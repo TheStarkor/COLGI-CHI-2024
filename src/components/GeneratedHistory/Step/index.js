@@ -1,5 +1,9 @@
 import { Button, Row, Col, Popover, Form, Image } from "antd"
+import { SaveOutlined } from '@ant-design/icons'
 import { useState } from "react";
+
+
+import './index.scss';
 
 const Step = (props) => {
   const [isRollback, setIsRollback] = useState(false);
@@ -9,7 +13,7 @@ const Step = (props) => {
   // console.log('step', props)
   const rollback = (history, idx) => {
     setSelectedIdx(idx)
-    setTempResults({...props.currentResults});
+    setTempResults({ ...props.currentResults });
     setIsRollback(true)
     let new_prompts = {
       q: history.question,
@@ -40,40 +44,70 @@ const Step = (props) => {
 
   return (
     <>
-      <div>
-        <h2>Check Your History</h2>
-        {isRollback &&
+      <div className="step-container">
+        <div>
+          {isRollback &&
+            <>
+              <div className="rollback-button-container">
+                <Button
+                  className="rollback-button"
+                  onClick={cancelRollback}>
+                  Cancel
+                </Button>
+                <Button
+                  className="rollback-button"
+                  onClick={confirmRollback}>
+                  Confirm
+                </Button>
+              </div>
+            </>
+          }
+        </div>
+
+        {props.currentHistories && props.currentHistories.map((history, idx) => (
           <>
-            <Button onClick={cancelRollback}>Cancel</Button>
-            <Button onClick={confirmRollback}>Confirm</Button>
-          </>
-        }
-      </div>
-
-      {props.currentHistories && props.currentHistories.map((history, idx) => (
-        <>
-          <div className={`history-box ${(selectedIdx < idx) ? 'disabled' : ''}`} onClick={() => rollback(history, idx)}>
-            <div className='question'>Q. {history.question}</div>
-            <div className='answer'>A. {history.answer}</div>
-            {history?.images.map(image => (
-              <>
-                <Image
-                  className ='image'
-                  src={image}
-                />
-              </>
-            ))}
-            <div>
-              {(history?.others[0].answer.length !== 0) && <span>others: </span>}
-              {history?.others.map(other => (
-                <span className='question'>{other.answer} </span>
+            <div className={`history-box ${(selectedIdx < idx) ? 'disabled' : ''}`} onClick={() => rollback(history, idx)}>
+              <div className='question'>Q. {history.question}</div>
+              <div className='answer'>A. {history.answer}</div>
+              {history?.images.map(image => (
+                <>
+                  <Image
+                    className='image'
+                    src={image}
+                  />
+                </>
               ))}
+              <div>
+                {(history?.others[0].answer.length !== 0) && <span>others: </span>}
+                {history?.others.map(other => (
+                  <span className='question'>{other.answer} </span>
+                ))}
+              </div>
             </div>
+          </>
+        ))}
+      </div>
+      {props.currentHistories.length !== 0 &&
+        <>
+          <div
+            className="savedirection-button-container"
+          >
+            <Button
+              className="savedirection-button"
+              onClick={() => props.setSavedHistory([...props.savedHistories, props.currentHistories])}
+            >
+              <p className="desc">Save direction</p>
+              <SaveOutlined style={{ fontSize: '12px' }} />
+            </Button>
           </div>
-      </>
-      ))}
+          {/* <Button
+            className="savedirection-button"
+            style={{ border: '0', }}
+            onClick={() => props.setSavedHistory(props.currentHistories)}>save direction
+          </Button> */}
+        </>
+      }
 
-      <Button onClick={() => props.setSavedHistory(props.currentHistories)}>save direction</Button>
     </>
   )
 }

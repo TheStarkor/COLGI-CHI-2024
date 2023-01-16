@@ -4,6 +4,8 @@ import { Form } from "antd"
 import Question from "./Question";
 import Answer from "./Answer";
 
+import './index.scss';
+
 import { qna as dummyQna, images as dummyImages } from './dummyData';
 
 const Qna = (props) => {
@@ -75,16 +77,18 @@ const Qna = (props) => {
 
   return (
     <>
-      <Question
-        suggestions={suggestions}
-        getSuggestion={getSuggestion}
-        selectQna={selectQna}
-      />
-      <Answer
-        form={form}
-        selectedQna={selectedQna}
-        generateResult={generateResult}
-      />
+      <div className="question-container">
+        <Question
+          suggestions={suggestions}
+          getSuggestion={getSuggestion}
+          selectQna={selectQna}
+        />
+        <Answer
+          form={form}
+          selectedQna={selectedQna}
+          generateResult={generateResult}
+        />
+      </div>
     </>
   )
 }

@@ -1,6 +1,8 @@
 import { Row, Col, Image, Popover, Button } from 'antd';
 import { useState } from "react";
 
+import './index.scss'
+
 const GeneratedImage = (props) => {
   const [limit, setLimit] = useState(50);
   const toggleEllipsis = (str, limit) => {
