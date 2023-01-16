@@ -1,5 +1,5 @@
-import { Button, Row, Popover } from "antd"
-import { RedoOutlined } from '@ant-design/icons'
+import { Button, Row, Input } from "antd"
+import { RedoOutlined, RightOutlined } from '@ant-design/icons'
 import './index.scss'
 
 const Question = (props) => {
@@ -13,6 +13,7 @@ const Question = (props) => {
           <RedoOutlined style={{ fontSize: '12px' }} />
         </div>
       </div>
+      
       <Row>
         {props.suggestions && props.suggestions.map(suggestion => (
           <Button
@@ -23,6 +24,16 @@ const Question = (props) => {
             {suggestion.question}
           </Button>
         ))}
+        <div className="question-input">
+          <Input 
+            className="question-examples input"
+            placeholder="Write your own question"
+          />
+          <Button
+            className="question-input-button"  
+          ><RightOutlined/>
+          </Button>
+        </div>        
       </Row>
     </>
   )

@@ -50,7 +50,7 @@ const Step = (props) => {
             <>
               <div className="rollback-button-container">
                 <Button
-                  className="rollback-button"
+                  className="rollback-cancel-button"
                   onClick={cancelRollback}>
                   Cancel
                 </Button>
@@ -87,6 +87,7 @@ const Step = (props) => {
           </>
         ))}
       </div>
+      
       {props.currentHistories.length !== 0 &&
         <>
           <div

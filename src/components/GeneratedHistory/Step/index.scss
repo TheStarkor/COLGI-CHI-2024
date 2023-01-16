@@ -5,21 +5,36 @@
 
     &::-webkit-scrollbar {
         display: none;
-        /* 크롬, 사파리, 오페라, 엣지 */
-        // width: 8px;
-        // height: 8px;
-        // border-radius: 6px;
-        // background: rgba(255, 255, 255, 0.4);
     }
 
     .rollback-button-container {
         display: flex;
+        width: 100%;
         margin-bottom: 10px;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap:6px;
+        
         .rollback-button {
-            border: 0;
-            color: gray;
-            background-color: #f8f8f8;
+            // border: 0;
+            border-radius: 5px;
+            background-color: white;
+            padding: 16px;
 
+            display: flex;
+            align-items: center;
+
+            .desc {
+                margin: 0 3px 0 0;
+                font-size: 12px;
+            }
+
+        }
+        .rollback-cancel-button {
+            border: 0;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            padding: 16px;
             display: flex;
             align-items: center;
 
