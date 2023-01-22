@@ -1,34 +1,40 @@
-import { Button, Row, Col, Popover, Form, Image } from "antd"
+import { Button, Modal, Image } from "antd"
 import { useState } from "react";
 
 import './index.scss'
 
 const Snapshot = (props) => {
-  console.log('sanpshot', props.savedHistories)
-  const [openIdx, setopenIdx] = useState(100);
-  const [isRevert, setIsRevert] = useState(false);
-  const [selectedIdx, setSelectedIdx] = useState(100);
+
+  const [openIdx, setopenIdx] = useState(100);  
   const [tempResults, setTempResults] = useState([]);
   const [tempHistories, setTempHistories] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const setSelectedIdx = props.setSelectedIdx
+  const setIsRollback = props.setIsRollback
 
   const revert = () => {
     // TODO: 지승아 힘내...
+    setIsModalOpen(true);
   }
 
   const cancelRevert = () => {
-    // TODO: 지승아 힘내...
+    setIsModalOpen(false);
   }
 
   const confirmRevert = () => {
     // TODO: 지승아 힘내...
+    // console.log('sanpshot', props.savedHistories[openIdx])
+    setIsModalOpen(false);
+    props.setCurrentHistories(props.savedHistories[openIdx])
+    setIsRollback(false)
+    setSelectedIdx(100)
   }
 
   const openIndex = (idx) => {
     setopenIdx(idx)
     console.log('openidx?', openIdx)
   }
-
-  console.log('snapshot', props.savedHistories)
 
   return (
     <>
@@ -52,13 +58,29 @@ const Snapshot = (props) => {
               && props.savedHistories?.[openIdx]
               && props.savedHistories?.[openIdx].map(step => (
                 <>
-                <div className="snapshot-qna">
-                  <span className="snapshot-question">Q. {step.question}</span>
-                  <span className="snapshot-answer">  {step.answer}</span>
-                </div>
+                  <div className="snapshot-qna">
+                    <span className="snapshot-question">Q. {step.question}</span>
+                    <span className="snapshot-answer">  {step.answer}</span>
+                  </div>
                 </>
               ))}
+            {props.savedHistories?.length > openIdx
+              &&
+              <div className="revert-button-container">
+                <Button onClick={revert}>revert</Button>
+              </div>}
+
           </div>
+          <Modal
+            title="Warning"
+            className="modal"
+            // style={{borderRadius:'10px'}}
+            open={isModalOpen}
+            onOk={confirmRevert}
+            onCancel={cancelRevert}
+          >
+            <p>확인을 누르면 이전단계는 저장되지 않습니다. </p>
+          </Modal>
         </div>
       </div>
     </>

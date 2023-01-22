@@ -6,9 +6,12 @@ import { useState } from "react";
 import './index.scss';
 
 const Step = (props) => {
-  const [isRollback, setIsRollback] = useState(false);
-  const [selectedIdx, setSelectedIdx] = useState(100);
+  
   const [tempResults, setTempResults] = useState([]);
+  const selectedIdx = props.selectedIdx
+  const setSelectedIdx = props.setSelectedIdx
+  const isRollback = props.isRollback
+  const setIsRollback = props.setIsRollback
 
   // console.log('step', props)
   const rollback = (history, idx) => {
@@ -87,7 +90,7 @@ const Step = (props) => {
           </>
         ))}
       </div>
-      
+
       {props.currentHistories.length !== 0 &&
         <>
           <div

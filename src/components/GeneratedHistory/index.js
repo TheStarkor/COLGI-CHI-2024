@@ -7,6 +7,8 @@ import Step from "./Step"
 
 const GeneratedHistory = (props) => {
   const [savedHistories, setSavedHistory] = useState([]);
+  const [isRollback, setIsRollback] = useState(false);
+  const [selectedIdx, setSelectedIdx] = useState(100);
 
   return (
     <>
@@ -21,6 +23,10 @@ const GeneratedHistory = (props) => {
             setCurrentHistories={props.setCurrentHistories}
             savedHistories={savedHistories}
             setSavedHistory={setSavedHistory}
+            isRollback={isRollback}
+            setIsRollback={setIsRollback}
+            selectedIdx={selectedIdx}
+            setSelectedIdx={setSelectedIdx}
           />
         </div>
         <Snapshot
@@ -29,6 +35,8 @@ const GeneratedHistory = (props) => {
           setCurrentResults={props.setCurrentResults}
           setCurrentHistories={props.setCurrentHistories}
           savedHistories={savedHistories}
+          setIsRollback={setIsRollback}
+          setSelectedIdx={setSelectedIdx}
         />
       </div>
     </>
