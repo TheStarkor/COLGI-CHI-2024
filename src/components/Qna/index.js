@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react"
-
-import { Form } from "antd"
 import Question from "./Question";
 import Answer from "./Answer";
 
@@ -9,27 +6,15 @@ import './index.scss';
 import { qna as dummyQna, images as dummyImages } from './dummyData';
 
 const Qna = (props) => {
-  const [suggestions, setSuggestion] = useState([]);
-  const [selectedQna, setSelectedQna] = useState({});
-  const [form] = Form.useForm();
-
-  useEffect(() => {
-    getSuggestion()
-  }, []);
-
-  const getSuggestion = async () => {
-    setSuggestion(dummyQna)
-  }
 
   const selectQna = (suggestion) => {
-    console.log('25', suggestion)
-    setSelectedQna(suggestion)
+    props.setSelectedQna(suggestion)
   }
 
   const customQuestion = (question) => {
     // TODO: generate answers with GPT
 
-    setSelectedQna({
+    props.setSelectedQna({
       question: question,
       answer_1: "Red",
       answer_2: "Blue",
@@ -41,7 +26,7 @@ const Qna = (props) => {
   const generateResult = async (values) => {
     // TODO: 승호야 힘내..
     let new_prompts = {
-      q: selectedQna.question,
+      q: props.selectedQna.question,
       p1: '',
       p1_answer: '',
       p1_images: [],
@@ -82,7 +67,7 @@ const Qna = (props) => {
 
       /* --------------- 더미 ------------------ */
       new_prompts[`p${Number(idx) + 1}_answer`] = value
-      new_prompts[`p${Number(idx) + 1}`] = 'promptprompt'
+      new_prompts[`p${Number(idx) + 1}`] = 'promptpromptpromptpromptpromptpromptpromptpromptpromptpromptpromptprompt'
       new_prompts[`p${Number(idx) + 1}_images`] = dummyImages
       props.setCurrentResults({ ...new_prompts })
     })
@@ -92,14 +77,14 @@ const Qna = (props) => {
     <>
       <div className="question-container">
         <Question
-          suggestions={suggestions}
-          getSuggestion={getSuggestion}
+          suggestions={props.suggestions}
+          getSuggestion={props.getSuggestion}
           selectQna={selectQna}
           customQuestion={customQuestion}
         />
         <Answer
-          form={form}
-          selectedQna={selectedQna}
+          form={props.form}
+          selectedQna={props.selectedQna}
           generateResult={generateResult}
         />
       </div>

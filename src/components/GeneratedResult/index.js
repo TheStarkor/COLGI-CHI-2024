@@ -5,7 +5,6 @@ import './index.scss';
 
 const GeneratedResult = (props) => {
 
-  console.log('generatedResults', props.currentResults)
   return (
     <>
     <div className='showimage-container'>
