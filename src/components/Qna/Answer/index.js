@@ -11,6 +11,12 @@ const Answer = (props) => {
     setIsOpen(!isOpen)
   }
 
+  const fillAnswer = (answer) => {
+    props.form.setFieldsValue({
+      answer1: answer
+    })
+  }
+
   return (
       <>
       <div className="answer-container">
@@ -27,7 +33,10 @@ const Answer = (props) => {
 
             {isOpen ? <Row className="answer-example-list-container">{[1, 2, 3, 4].map(item => (
               <>
-                <Button className="answer-example-list">{props.selectedQna[`answer_${item}`]}</Button>
+                <Button 
+                  className="answer-example-list"
+                  onClick={() => fillAnswer(props.selectedQna[`answer_${item}`])}
+                >{props.selectedQna[`answer_${item}`]}</Button>
               </>))}</Row>
               : <></>
             }

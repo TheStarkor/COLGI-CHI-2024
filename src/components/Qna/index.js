@@ -22,7 +22,20 @@ const Qna = (props) => {
   }
 
   const selectQna = (suggestion) => {
+    console.log('25', suggestion)
     setSelectedQna(suggestion)
+  }
+
+  const customQuestion = (question) => {
+    // TODO: generate answers with GPT
+
+    setSelectedQna({
+      question: question,
+      answer_1: "Red",
+      answer_2: "Blue",
+      answer_3: "TEST",
+      answer_4: "Ok"
+    })
   }
 
   const generateResult = async (values) => {
@@ -82,6 +95,7 @@ const Qna = (props) => {
           suggestions={suggestions}
           getSuggestion={getSuggestion}
           selectQna={selectQna}
+          customQuestion={customQuestion}
         />
         <Answer
           form={form}

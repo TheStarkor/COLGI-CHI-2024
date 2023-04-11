@@ -1,8 +1,19 @@
 import { Button, Row, Input } from "antd"
 import { RedoOutlined, RightOutlined } from '@ant-design/icons'
 import './index.scss'
+import { useState } from "react"
 
 const Question = (props) => {
+  const [question, setQuestion] = useState(null);
+
+  const onChangeInput = (e) => {
+    setQuestion(e.target.value)
+  }
+
+  const updateQuestion = (question) => {
+    props.customQuestion(question)
+  }
+
   return (
     <>
       <h2>Get questions and give answer</h2>
@@ -28,8 +39,11 @@ const Question = (props) => {
           <Input 
             className="question-examples input"
             placeholder="Write your own question"
+            onChange={onChangeInput}
+            onPressEnter={() => updateQuestion(question)}
           />
           <Button
+            onClick={() => updateQuestion(question)}
             className="question-input-button"  
           ><RightOutlined/>
           </Button>
