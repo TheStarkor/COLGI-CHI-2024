@@ -20,18 +20,18 @@ const Step = (props) => {
     setIsRollback(true)
     let new_prompts = {
       q: history.question,
-      p1: history.prompt,
-      p1_answer: history.answer,
-      p1_images: history.images,
-      p2: history.others[0].prompt,
-      p2_answer: history.others[0].answer,
-      p2_images: history.others[0].images,
-      p3: history.others[1].prompt,
-      p3_answer: history.others[1].answer,
-      p3_images: history.others[1].images,
-      p4: '',
-      p4_answer: '',
-      p4_images: [],
+      p1: history.others[0].prompt,
+      p1_answer: history.others[0].answer,
+      p1_images: history.others[0].images,
+      p2: history.others[1].prompt,
+      p2_answer: history.others[1].answer,
+      p2_images: history.others[1].images,
+      p3: history.others[2].prompt,
+      p3_answer: history.others[2].answer,
+      p3_images: history.others[2].images,
+      p4: history.others[3].prompt,
+      p4_answer: history.others[3].answer,
+      p4_images: history.others[3].images
     }
     props.setCurrentResults(new_prompts);
   }
