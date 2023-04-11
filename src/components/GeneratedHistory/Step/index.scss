@@ -1,0 +1,127 @@
+.step-container {
+    max-height: 600px;
+    overflow: auto;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .rollback-button-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 10px;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap:6px;
+        
+        .rollback-button {
+            // border: 0;
+            border-radius: 5px;
+            background-color: white;
+            padding: 16px;
+
+            display: flex;
+            align-items: center;
+
+            .desc {
+                margin: 0 3px 0 0;
+                font-size: 12px;
+            }
+
+        }
+        .rollback-cancel-button {
+            border: 0;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+
+            .desc {
+                margin: 0 3px 0 0;
+                font-size: 12px;
+            }
+
+            &:hover {
+                background-color: #f8f8f8;
+            }
+
+            &:focus {
+                background-color: #f8f8f8;
+            }
+
+        }
+    }
+
+    .history-box {
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+        cursor: pointer;
+
+        .question {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #787878;
+        }
+
+        .answer {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+            color: #000000;
+        }
+
+        .image {
+            width: 52px;
+            height: 52px;
+            margin: 4px 0;
+        }
+    }
+
+    .disabled {
+        // background-color: black;
+        opacity: 0.3;
+    }
+
+    .saved-box {
+        background-color: white;
+    }
+
+}
+
+.savedirection-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+
+    .savedirection-button {
+        border: 0;
+        color: gray;
+        background-color: #f8f8f8;
+
+        display: flex;
+        align-items: center;
+
+        .desc {
+            margin: 0 3px 0 0;
+            font-size: 12px;
+        }
+
+        &:hover {
+            background-color: #f8f8f8;
+        }
+
+        &:focus {
+            background-color: #f8f8f8;
+        }
+
+    }
+
+}

@@ -6,8 +6,8 @@ const Header = () => {
 
 	return (
 		<>
-			<div onClick={() => navigate('/')} className='header-container'>
-				<p className='logo'>COLGI</p>
+			<div className='header-container'>
+				<p onClick={() => navigate('/')}  className='logo'>COLGI</p>
 			</div>
 		</>
 	)

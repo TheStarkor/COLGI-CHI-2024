@@ -1,12 +1,4 @@
-import { useEffect, useState } from "react";
-import axios from "axios"
-
-
-import { Button, Row, Col, Popover, Form, Image } from "antd"
-import { CaretRightOutlined } from '@ant-design/icons'
-
-import { questionPrompt, solutionPrompt } from "./promptHelper";
-import { qna as dummyQna, images as dummyImages } from './dummyData';
+import { useState } from "react";
 
 import './index.scss'
 
@@ -16,12 +8,12 @@ import GeneratedResult from "../../components/GeneratedResult";
 import GeneratedHistory from "../../components/GeneratedHistory";
 import { useParams } from "react-router-dom";
 
-const Home = (props) => {
+const Home = () => {
   const [currentHistories, setCurrentHistories] = useState([]);
   const [currentResults, setCurrentResults] = useState([]);
   const { prompt } = useParams();
 
-  const addHistory = ({ question, answer, images }) => {
+  const addHistory = () => {
     // TODO: 승호야 힘내...
     const new_history = [
       ...currentHistories,

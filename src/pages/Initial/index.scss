@@ -1,0 +1,30 @@
+.initial-container{
+    width:100vw;
+    height:900px; 
+    //background-color: gray;   
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .ant-input-group-wrapper{        
+        width: 500px;
+        .ant-input-affix-wrapper{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 2px;
+            //border : 0px;
+        }
+    }
+    .button-desc{
+        color:gray;
+        margin: 0 10px 0 0
+    }
+    .button{
+        cursor: pointer;
+        font-weight: 600;
+        font-size: medium;
+        &:hover{
+            font-weight: 700;
+        }
+    }
+}

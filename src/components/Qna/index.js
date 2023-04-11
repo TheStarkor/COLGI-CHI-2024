@@ -4,6 +4,8 @@ import { Form } from "antd"
 import Question from "./Question";
 import Answer from "./Answer";
 
+import './index.scss';
+
 import { qna as dummyQna, images as dummyImages } from './dummyData';
 
 const Qna = (props) => {
@@ -20,7 +22,20 @@ const Qna = (props) => {
   }
 
   const selectQna = (suggestion) => {
+    console.log('25', suggestion)
     setSelectedQna(suggestion)
+  }
+
+  const customQuestion = (question) => {
+    // TODO: generate answers with GPT
+
+    setSelectedQna({
+      question: question,
+      answer_1: "Red",
+      answer_2: "Blue",
+      answer_3: "TEST",
+      answer_4: "Ok"
+    })
   }
 
   const generateResult = async (values) => {
@@ -75,16 +90,19 @@ const Qna = (props) => {
 
   return (
     <>
-      <Question
-        suggestions={suggestions}
-        getSuggestion={getSuggestion}
-        selectQna={selectQna}
-      />
-      <Answer
-        form={form}
-        selectedQna={selectedQna}
-        generateResult={generateResult}
-      />
+      <div className="question-container">
+        <Question
+          suggestions={suggestions}
+          getSuggestion={getSuggestion}
+          selectQna={selectQna}
+          customQuestion={customQuestion}
+        />
+        <Answer
+          form={form}
+          selectedQna={selectedQna}
+          generateResult={generateResult}
+        />
+      </div>
     </>
   )
 }
