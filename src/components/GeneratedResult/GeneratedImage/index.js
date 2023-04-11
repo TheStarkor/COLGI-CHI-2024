@@ -1,4 +1,4 @@
-import { Row, Col, Image, Popover, Button } from 'antd';
+import { Image, Button } from 'antd';
 import { useState } from "react";
 
 import './index.scss'
@@ -33,7 +33,7 @@ const GeneratedImage = (props) => {
           <div className='showimage-button-container'>
           {props.prompt &&
             <Button
-              onClick={() => props.addHistory({ question: props.question, answer: props.answer, images: props.images })}
+              onClick={() => props.addHistory({ question: props.question, answer: props.answer, images: props.images, prompt: props.prompt })}
               type='primary' style={{ margin: '78px 0 0 16px', backgroundColor: 'gray', border: 0, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', borderRadius: '5px'}}
             >
               Confirm

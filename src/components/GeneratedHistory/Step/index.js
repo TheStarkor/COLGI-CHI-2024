@@ -81,7 +81,7 @@ const Step = (props) => {
                 </>
               ))}
               <div>
-                {(history?.others[0].answer.length !== 0) && <span>others: </span>}
+                {(history?.others[0].answer.length !== 0) && <span>answers: </span>}
                 {history?.others.map(other => (
                   <span className='question'>{other.answer} </span>
                 ))}
