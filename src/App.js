@@ -5,7 +5,7 @@ import Router from "./router";
 import 'antd/dist/antd.css';
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:8000";
+  axios.defaults.baseURL = "https://colgi-api.run.goorm.site";
 
   return (
     <div className="App">

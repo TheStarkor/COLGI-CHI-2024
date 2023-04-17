@@ -21,7 +21,7 @@ const Question = (props) => {
       <div className="question-request-container">
         <div className="question-request-button" type="primary" onClick={props.getSuggestion}>
           <p className="desc">Get More Ideas</p>
-          <RedoOutlined style={{ fontSize: '12px' }} />
+          <RedoOutlined onClick={props.getSuggestionstion} style={{ fontSize: '12px' }} />
         </div>
       </div>
       

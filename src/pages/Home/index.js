@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import { Form } from "antd"
 
 import { qna as dummyQna, images as dummyImages } from './dummyData';
+import { questionPrompt } from './promptHelper';
+import axios from "axios";
 
 const Home = () => {
   const [form] = Form.useForm();
@@ -23,13 +25,18 @@ const Home = () => {
     getSuggestion()
   }, []);
 
-  const getSuggestion = async () => {
-    // TODO: suggestion API 연결
-    setSuggestion(dummyQna)
+  const getSuggestion = async (new_history = null) => {
+	  const query = questionPrompt(new_history, prompt);
+    const resp = await axios.get(`https://colgi-api.run.goorm.site/complete?prompt=${query}`)
+    const qna = resp.data.result.map(item => (
+      JSON.parse(item.text)
+    ))
+
+    setSuggestion(qna)
     form.resetFields()
   }
 
-  const addHistory = (selectedResult) => {
+  const addHistory = async (selectedResult) => {
     const new_history = [
       ...currentHistories,
       {
@@ -64,7 +71,7 @@ const Home = () => {
 
     setCurrentHistories(new_history);
     setCurrentResults([]);
-    getSuggestion();
+    getSuggestion(new_history);
   };
 
   return (
@@ -76,15 +83,18 @@ const Home = () => {
           initialPrompt={prompt}
           currentResults={currentResults}
           currentHistories={currentHistories}
+		      getSuggestion={getSuggestion}
           setCurrentHistories={setCurrentHistories}
           setCurrentResults={setCurrentResults}
         />
         <Qna
+		      prompt={prompt}
           form={form}
           initialPrompt={prompt}
           suggestions={suggestions}
           selectedQna={selectedQna}
           currentHistories={currentHistories}
+		      getSuggestion={getSuggestion}
           setCurrentResults={setCurrentResults}
           setSuggestion={setSuggestion}
           setSelectedQna={setSelectedQna}
