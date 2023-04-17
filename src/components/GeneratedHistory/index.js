@@ -24,6 +24,7 @@ const GeneratedHistory = (props) => {
             savedHistories={savedHistories}
             setSavedHistory={setSavedHistory}
             isRollback={isRollback}
+			      getSuggestion={props.getSuggestion}
             setIsRollback={setIsRollback}
             selectedIdx={selectedIdx}
             setSelectedIdx={setSelectedIdx}

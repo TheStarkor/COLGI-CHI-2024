@@ -42,6 +42,7 @@ const Step = (props) => {
   }
   const confirmRollback = () => {
     props.setCurrentHistories([...props.currentHistories.slice(0, selectedIdx + 1)])
+	  props.getSuggestion([...props.currentHistories.slice(0, selectedIdx + 1)])
     cancelRollback()
   }
 
