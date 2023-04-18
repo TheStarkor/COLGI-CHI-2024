@@ -11,15 +11,18 @@ const Answer = (props) => {
     setIsOpen(!isOpen)
   }
 
-  const fillAnswer = (answer) => {
-    props.form.setFieldsValue({
-      answer1: answer
-    })
+  const fillAnswer = (answer, index) => {
+    let value = null;
+    if (index === 1) value = {answer1: answer}
+    if (index === 2) value = {answer2: answer}
+    if (index === 3) value = {answer3: answer}
+    if (index === 4) value = {answer4: answer}
+    props.form.setFieldsValue(value)
   }
 
   return (
       <>
-      <div className="answer-container">
+	    {props.selectedQna?.question && <div className="answer-container">
         {props.selectedQna?.question && <h3 className="question">Q. {props.selectedQna.question}</h3>}
         {props.selectedQna?.question &&
           <div className="answer-example">
@@ -35,7 +38,7 @@ const Answer = (props) => {
               <>
                 <Button 
                   className="answer-example-list"
-                  onClick={() => fillAnswer(props.selectedQna[`answer_${item}`])}
+                  onClick={() => fillAnswer(props.selectedQna[`answer_${item}`], item)}
                 >{props.selectedQna[`answer_${item}`]}</Button>
               </>))}</Row>
               : <></>
@@ -56,7 +59,7 @@ const Answer = (props) => {
           <Form.Item
             label="Answer 1"
             name="answer1"
-            rules={[{ required: true, message: 'Please input your Answer!' }]}
+            rules={[{ message: 'Please input your Answer!' }]}
             style={{ marginBottom: '20px' }}
           >
             <Input style={{ width: '100%', border: '1px solid #D9D9D9', borderRadius: '5px', fontWeight: '400' }} />
@@ -89,12 +92,12 @@ const Answer = (props) => {
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 1, span: 23 }}>
-            <Button style={{ width: '100%', backgroundColor: '#4A4A4A', border: 0, borderRadius: '5px' }} type="primary" htmlType="submit">
+            <Button loading={props.isLoading} style={{ width: '100%', backgroundColor: '#4A4A4A', border: 0, borderRadius: '5px' }} type="primary" htmlType="submit">
               Show Images
             </Button>
           </Form.Item>
         </Form>
-        </div>
+        </div>}
     </>
   )
 }
