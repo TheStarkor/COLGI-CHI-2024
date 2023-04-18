@@ -1,3 +1,4 @@
+import { useState } from "react"
 import axios from "axios";
 import Question from "./Question";
 import Answer from "./Answer";
@@ -34,6 +35,7 @@ give me an image description (single sentence):`
 }
 
 const Qna = (props) => {
+	const [isLoading, setLoading] = useState(false);
 
   const selectQna = (suggestion) => {
     props.setSelectedQna(suggestion)
@@ -67,9 +69,9 @@ const Qna = (props) => {
       p4_answer: '',
       p5_images: [],
     }
-
+	  setLoading(true);
     const items = [values.answer1, values.answer2, values.answer3, values.answer4, values.answer5]
-    items.map(async (value, idx) => {
+    await Promise.all(items.map(async (value, idx) => {
       if (!value) return;
       /* --------------- 실제 환경 ------------------ */
       const prompt = solutionPrompt(props.currentHistories, props.selectedQna.question, value, props.prompt)
@@ -88,7 +90,8 @@ const Qna = (props) => {
       // new_prompts[`p${Number(idx) + 1}`] = 'promptpromptpromptpromptpromptpromptpromptpromptpromptpromptpromptprompt'
       // new_prompts[`p${Number(idx) + 1}_images`] = dummyImages
       props.setCurrentResults({ ...new_prompts })
-    })
+    }))
+    setLoading(false);
   }
 
   return (
@@ -102,6 +105,7 @@ const Qna = (props) => {
         />
         <Answer
           form={props.form}
+		      isLoading={isLoading}
           selectedQna={props.selectedQna}
           generateResult={generateResult}
         />

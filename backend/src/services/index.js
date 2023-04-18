@@ -28,9 +28,9 @@ const generate_text = async (prompt, count) => {
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt,
-    temperature: 0.4,
+    temperature: 0.8,
     max_tokens: 2000,
-	n: count
+	  n: count
   });
 
   return response.data.choices
