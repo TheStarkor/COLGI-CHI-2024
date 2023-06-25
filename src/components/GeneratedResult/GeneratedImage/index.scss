@@ -12,20 +12,20 @@
         width: 100%;
         // background-color: #787878;
         margin-bottom: 12px;
-        display: flex;
+		
         .showimage-name-tag{
-            // width: 120px;
-            height:40px;
-            padding: 8px 20px;
-            border-radius: 40px;
-            margin-right: 10px;
-            background-color: lightseagreen;
+            width: fit-content;
+            // height:40px;
+            // padding: 8px 20px;
+            // border-radius: 40px;
+            // margin-right: 10px;
+            // background-color: lightseagreen;
             //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            color:white;
+            color:lightseagreen;
             font-weight:500;
+			
         }
         .showimage-desc{
-            padding: 0 10px;
             width:78%;        
             display: flex;
             align-items: center;
@@ -33,7 +33,7 @@
             font-size: 14px;
             line-height: 18px;
             word-break: break-all;
-            color: #595959;
+            color: #777777;
             // background-color: #aaa;
         }
     }

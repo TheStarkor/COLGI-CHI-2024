@@ -22,13 +22,19 @@
 }
 
 .question-examples {
-    width: 510px;
+    width: 100%;
     margin-bottom: 16px;
     border: 0;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-weight: 400;
-    
+	word-break: break-all;
+    cursor:pointer;
+	padding: 4px 15px;
+	::selection {
+    color: #fff;
+    background: #1890ff;
+}
 }
 .question-input{
     display: flex;

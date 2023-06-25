@@ -20,7 +20,7 @@ const GeneratedImage = (props) => {
     <>
       <div className='showimage-box'>
         <div className='showimage-content'>
-          <div className='showimage-name-tag'>{props.answer}</div>
+          <div className='showimage-name-tag'><span>A. </span>{props.answer}</div>
           <div className='showimage-desc'>
             {toggleEllipsis(props.prompt, limit).string}
             {toggleEllipsis(props.prompt, limit).isShowMore && <Button style={{ border: 0 }} onClick={onClickMore(props.prompt)}>...더보기</Button>}
