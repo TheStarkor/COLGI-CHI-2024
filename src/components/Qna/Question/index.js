@@ -29,13 +29,12 @@ const Question = (props) => {
 
 					<Row>
 						{props.suggestions.map(suggestion => (
-							<Button
+							<div
 								onClick={() => props.selectQna(suggestion)}
 								className="question-examples"
-								style={{ border: 0, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}
 							>
 								{suggestion.question}
-							</Button>
+							</div>
 						))}
 						<div className="question-input">
 							<Input
